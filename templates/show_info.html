@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pistol Armory</title>
+</head>
+<body>
+    <h1>Pistol Armory Details</h1>
+    <ul>
+        {% for pistol in pistols}
+          <li>Name: {{ pistol.pistol_name }}</li>
+          <li>Type: {{ pistol.pistol_type }}</li>
+          <li>ID: {{ id }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
