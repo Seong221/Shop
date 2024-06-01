@@ -5,7 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from models import Pistol_Models
+from models import Shop_models
 
 
 # this is the Alembic Config object, which provides
@@ -21,7 +21,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = Pistol_Models.given_table.metadata
+target_metadata = Shop_models.given_table.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

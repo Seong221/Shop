@@ -6,13 +6,15 @@
 </head>
 <body>
   <h1>Type down the infos</h1>
-  <form method="/upload" method="post">
-     <label for="text">Enter Pistol Name : </label>
-     <input type="string" name="Pistol Name" value="{{pistol_name}}"/>
+  <form action="/upload" method="post">
+     <label for="text">Enter Laptop cpu : </label>
+     <input type="text" name="form_laptop_cpu" />
      <br>
-     <label for="text">Enter Pistol Type : </label>
-     <input type="string" name="Pistol Type" value="{{pistol_type}}"/>
+     <label for="text">Enter Laptop gpu : </label>
+     <input type="text" name="form_pistol_gpu" />
      <br>
+     <label for="floatinput">Enter Laptop Display inch : </label>
+     <input type="number" name="form_laptop_display_inch" />      
      <button type="submit">Submit</button>
   </form>
 

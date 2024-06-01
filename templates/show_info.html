@@ -7,10 +7,12 @@
 <body>
     <h1>Pistol Armory Details</h1>
     <ul>
-        {% for pistol in pistols}
-          <li>Name: {{ pistol.pistol_name }}</li>
-          <li>Type: {{ pistol.pistol_type }}</li>
-          <li>ID: {{ id }}</li>
+        {% for pistol in pistols %}
+        <li>
+          <strong>Name:</strong> {{ pistol.pistol_name }}</br>
+          <strong>Type:</strong> {{ pistol.pistol_type }}</br>
+          <strong>ID:</strong> {{ pistol.id }}
+        </li>
         {% endfor %}
     </ul>
 </body>
