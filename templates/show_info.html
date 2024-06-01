@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pistol Armory</title>
+    <title>Laptop Shop</title>
 </head>
 <body>
-    <h1>Pistol Armory Details</h1>
+    <h1>Laptop Info</h1>
     <ul>
-        {% for pistol in pistols %}
+        {% for laptop in laptops %}  
         <li>
-          <strong>Name:</strong> {{ pistol.pistol_name }}</br>
-          <strong>Type:</strong> {{ pistol.pistol_type }}</br>
-          <strong>ID:</strong> {{ pistol.id }}
+          <strong>ID:</strong> {{ laptop.id }}</br>
+          <strong>CPU:</strong> {{ laptop.laptop_cpu }}</br>
+          <strong>GPU:</strong> {{ laptop.laptop_gpu }}</br>
+          <strong>DISPLAY INCH:</strong> {{laptop.laptop_display_inch }}</br>
+          <strong>PRICE:</strong> {{laptop.laptop_price}}</br>
         </li>
         {% endfor %}
     </ul>

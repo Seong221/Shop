@@ -20,7 +20,7 @@ class Laptop_Models(given_table):
     laptop_cpu=Column(String, nullable=False)
     laptop_gpu=Column(Text, nullable=False)
     laptop_display_inch=Column(Float, nullable=False)
-    laptop_price=Column(Integer, nullable=False)
+    #laptop_price=Column(Integer, nullable=False)
     #created_at : Column(DateTime, default=get_utc_now)
 #utcnow는 일부로 허용을 안해서, now를 씀
 #반드시 Nullable=False인 거는 데이터가 들어가야 한다.
