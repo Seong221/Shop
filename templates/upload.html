@@ -8,13 +8,16 @@
   <h1>Type down the infos</h1>
   <form action="/upload" method="post">
      <label for="text">Enter Laptop cpu : </label>
-     <input type="text" name="form_laptop_cpu" />
+     <input type="text" name="form_laptop_cpu" id="form_laptop_cpu" required/>
      <br>
      <label for="text">Enter Laptop gpu : </label>
-     <input type="text" name="form_laptop_gpu" />
+     <input type="text" name="form_laptop_gpu" id="form_laptop_gpu" required/>
      <br>
-     <label for="floatinput">Enter Laptop Display inch : </label>
-     <input type="number" name="form_laptop_display_inch" />      
+     <label for="form_laptop_display_inch">Enter Laptop Display inch : </label>
+     <input type="number" name="form_laptop_display_inch" id="form_laptop_display_inch" required/>
+     <br>
+     <label for="form_laptop_price">Enter Laptop Price : </label>   
+     <input type="number" name="form_laptop_price" id="form_laptop_price" required/>   
      <button type="submit">Submit</button>
   </form>
 

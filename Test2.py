@@ -45,14 +45,22 @@ def show_form(request: Request):
 @second_test.post("/upload", response_class=RedirectResponse)
 def upload(form_laptop_cpu:str = Form(...),
             form_laptop_gpu:str=Form(...), 
-            form_laptop_display_inch : float = Form(...), 
+            form_laptop_display_inch : float = Form(...),
+            form_laptop_price : int = Form(...), 
             db: Session=Depends(get_db)):
  pd_laptop=Laptop_pydantic(
     laptop_cpu=form_laptop_cpu, 
     laptop_gpu=form_laptop_gpu, 
-    laptop_display_inch=form_laptop_display_inch)
+    laptop_display_inch=form_laptop_display_inch,
+    laptop_price=form_laptop_price)
   
- db_laptop = Laptop_Models(laptop_cpu=pd_laptop.laptop_cpu, laptop_gpu=pd_laptop.laptop_gpu) #모델과 pydantic 사이의 매핑
+ db_laptop = Laptop_Models(
+    laptop_cpu=pd_laptop.laptop_cpu, 
+    laptop_gpu=pd_laptop.laptop_gpu,
+    laptop_display_inch=pd_laptop.laptop_display_inch,
+    laptop_price=pd_laptop.laptop_price) #모델과 pydantic 사이의 매핑
+ 
+ 
  db.add(db_laptop)
  db.commit()
  db.refresh(db_laptop)
