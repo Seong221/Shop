@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Form, Request, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse
-from models.Shop_models import Laptop_Models, Laptop_pydantic, common, middle, high
+from models.Shop_models import Laptop_Models, Laptop_pydantic
 from fastapi.templating import Jinja2Templates
 from database.db_link import get_db, given_table, engine
 from sqlalchemy.orm import Session
@@ -45,7 +45,7 @@ def show_form(request: Request):
 @second_test.post("/upload", response_class=RedirectResponse)
 def upload(form_laptop_cpu:str = Form(...),
             form_laptop_gpu:str=Form(...), 
-            form_laptop_display_inch:float=Form(...), 
+            form_laptop_display_inch : float = Form(...), 
             db: Session=Depends(get_db)):
  pd_laptop=Laptop_pydantic(
     laptop_cpu=form_laptop_cpu, 
