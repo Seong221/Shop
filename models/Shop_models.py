@@ -2,7 +2,8 @@ from sqlalchemy import Column, Integer, String, Text, DateTime, Float
 from sqlalchemy.orm import relationship
 #from datetime import datetime
 from database.db_link import given_table
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
+from typing import Optional
 #from zoneinfo import ZoneInfo
 
 #변경 사항을 데이터베이스 파일에 새로 적용하고 싶다면
@@ -38,27 +39,16 @@ class Laptop_pydantic(BaseModel):
       #arbitrary_types_allowed=True
 
 
-class common(given_table):
-    __tablename__="Common Shoppers"
+class Shoppers(given_table):
+    __tablename__="Shoppers"
 
     id=Column(Integer, primary_key=True)
     user_name=Column(String, nullable=False)
-    user_number_of_purchases=Column(Integer, nullable=False)
-    money=Column(Integer, nullable=False)
+    password=Column(String, nullable=False)
+    money=Column(Integer, nullable=False, default=5000)
 
-class middle(given_table):
-    __tablename__="Middle Class"
-
-    id=Column(Integer, primary_key=True)
-    user_name=Column(String, nullable=False)
-    user_number_of_purchases=Column(Integer, nullable=False)
-    money=Column(Integer, nullable=False)
-
-class high(given_table):
-    __tablename__="High Class"
-
-    id=Column(Integer, primary_key=True)
-    user_name=Column(String, nullable=False)
-    user_number_of_purchases=Column(Integer, nullable=False)
-    money=Column(Integer, nullable=False)    
-
+class Shopper_pydantic(BaseModel):
+    id:Optional[int]
+    user_name : str
+    password:str
+    money : Optional[int]

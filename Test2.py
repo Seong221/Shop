@@ -1,10 +1,10 @@
 from fastapi import FastAPI, Form, Request, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse
-from models.Shop_models import Laptop_Models, Laptop_pydantic
+from models.Shop_models import Laptop_Models, Laptop_pydantic, Shoppers, Shopper_pydantic
 from fastapi.templating import Jinja2Templates
 from database.db_link import get_db, given_table, engine
 from sqlalchemy.orm import Session
-
+import bcrypt
 
 ###API 호출, 프론트엔드에서 버튼 입력 -> DB에 저장, 만든 사이트를 aws에서 서비스하고 그 IP로 접속이 되는 지 확인하는 게 중요###
 
@@ -19,6 +19,30 @@ templates=Jinja2Templates(directory="templates")
 
 ###터미널 메시지는 정상인데, URL접속 시 무한로딩이 되는 경우, 포트가 여전히 가동중이라서 일어날 수 있습니다.
 ###접속 중 Ctrl+S 로 코드 저장 시 다시 되는 경우가 있다.
+
+
+
+@second_test.get("/register", response_class=HTMLResponse)
+def show_register(request: Request):
+   return templates.TemplateResponse("register.html",context={"request":request}) 
+
+
+
+@second_test.post("/register")
+def create_user(form_username: str=Form(...),form_password: str=Form(...),db: Session=Depends(get_db)):
+  hashed_password=bcrypt.hashpw(form_password.encode('utf-8'),bcrypt.gensalt())
+  db_user=Shoppers(
+     user_name=form_username,
+     password=hashed_password.decode('utf-8')
+  )
+  db.add(db_user)
+  db.commit()
+  db.refresh(db_user)
+  return {"message" : "User created succesfully"}
+  
+
+
+
 
 
 @second_test.get("/", response_class=HTMLResponse)    #get안에 htmlresponse 매개변수를 넣는 방법도 있음
@@ -60,11 +84,12 @@ def upload(form_laptop_cpu:str = Form(...),
     laptop_display_inch=pd_laptop.laptop_display_inch,
     laptop_price=pd_laptop.laptop_price) #모델과 pydantic 사이의 매핑
  
- 
  db.add(db_laptop)
  db.commit()
  db.refresh(db_laptop)
  return RedirectResponse(url="/", status_code=303)
+
+ 
 
 
 
