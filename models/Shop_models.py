@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, Float
+from sqlalchemy import Column, Integer, String, Text, Boolean, Table, Float
 from sqlalchemy.orm import relationship
 #from datetime import datetime
 from database.db_link import given_table
@@ -13,6 +13,9 @@ from typing import Optional
 
 #def get_utc_now():
     #return datetime.now(ZoneInfo('UTC'))
+
+
+
 
 class Laptop_Models(given_table):
     __tablename__="Laptop shop"
@@ -40,15 +43,17 @@ class Laptop_pydantic(BaseModel):
 
 
 class Shoppers(given_table):
-    __tablename__="Shoppers"
+   __tablename__="Shoppers"
 
-    id=Column(Integer, primary_key=True)
-    user_name=Column(String, nullable=False)
-    password=Column(String, nullable=False)
-    money=Column(Integer, nullable=False, default=5000)
+   id=Column(Integer, primary_key=True)
+   user_name=Column(String, nullable=False)
+   password=Column(String, nullable=False)
+   money=Column(Integer, nullable=False, default=5000)
+   is_admin=Column(Boolean, nullable=False, default=False)
 
 class Shopper_pydantic(BaseModel):
     id:Optional[int]
     user_name : str
     password:str
     money : Optional[int]
+    is_admin: Optional[bool] = False

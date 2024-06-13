@@ -13,7 +13,11 @@
           <strong>CPU:</strong> {{ laptop.laptop_cpu }}</br>
           <strong>GPU:</strong> {{ laptop.laptop_gpu }}</br>
           <strong>DISPLAY INCH:</strong> {{laptop.laptop_display_inch }}</br>
-          <strong>PRICE:</strong>{{laptop.laptop_price}}
+          <strong>PRICE:</strong>{{laptop.laptop_price}}</br>
+          <form action="/buy" method="post">
+            <input type="hidden" name="laptop_id" value="{{ laptop.id }}">
+            <input type="hidden" name="laptop_price" value="{{ laptop.laptop_price }}">
+            <button type="submit">Buy</button>
         </li>
         {% endfor %}
     </ul>

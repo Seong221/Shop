@@ -5,8 +5,7 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from models import Shop_models
-
+from database import db_link #반드시 Session, db, MetaData 관련 데이터가 있는 걸 가져올 것 
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -21,7 +20,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = Shop_models.given_table.metadata
+target_metadata = db_link.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
