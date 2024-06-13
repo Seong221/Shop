@@ -205,15 +205,15 @@ def admin_required(current_user: Shoppers = Depends(get_current_user)) ->Shopper
    return current_user
 
 @second_test.get('/upload', response_class=HTMLResponse)
-def show_form(request: Request, db: Session=Depends(get_db),token:str=Depends(oauth2_scheme)):
+def show_form(request: Request, db: Session=Depends(get_db)):#token:str=Depends(oauth2_scheme)):
     logger.debug("Entered show_form function")
-    try:
-      current_user = admin_required(get_current_user(db, token))
-      logger.debug(f"Current user: {current_user.user_name}")
-      return templates.TemplateResponse("upload.html", context={"request": request})
-    except HTTPException as e:
-        logger.debug(f"HTTPException: {e.detail}")
-        raise e
+    #try:
+      #current_user = admin_required(get_current_user(db, token))
+      #logger.debug(f"Current user: {current_user.user_name}")
+    return templates.TemplateResponse("upload.html", context={"request": request})
+    #except HTTPException as e:
+        #logger.debug(f"HTTPException: {e.detail}")
+        #raise e
 
 
 @second_test.post("/upload", response_class=RedirectResponse)
