@@ -1,0 +1,7 @@
+fastapi>=0.11.0
+pydantic>=2.6.3
+uvicorn>=0.27.1
+Sqlalchemy>=2
+python-jose
+passlib[bcrypt]
+

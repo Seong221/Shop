@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  fastapi:
+    image: tiangolo/uvicorn-gunicorn-fastapi:python3.10
+    command: uvicorn Test2:second_test --host 0.0.0.0 --port 8080 --reload
+    ports:
+     - 8080:8080
+    volumes:
+     - .:/Shop
+    working_dir: /Shop
+    environment:
+      - MODULE_NAME=Test2
+      - VARIABLE_NAME=second_test
